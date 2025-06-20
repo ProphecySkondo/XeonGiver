@@ -7,7 +7,8 @@
 local plr = game:GetService("Players").LocalPlayer
 local char = plr.Character
 local watermark = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProphecySkondo/Misc/refs/heads/main/watermark.lua"))()
-local hrp, tools = plr:WaitForChild("Backpack", 3), char:WaitForChild("Humanoid", 3)
+local pack = plr:WaitForChild("Backpack", 3)
+local humanoid = char:WaitForChild("Humanoid", 3)
 
 function getalltools()
 	local tools = {}
@@ -69,5 +70,11 @@ function dostuff()
 	getgenv().collecttools = collecttools
 	getgenv().savedtools = getalltools()
 end
+
+dostuff()
 text("Use collecttools() to get all tools; savedtools(); getalltools()")
-return dostuff(), text
+return {
+	getalltools = getalltools,
+	collecttools = collecttools,
+	text = text
+}
